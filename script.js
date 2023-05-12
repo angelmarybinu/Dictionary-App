@@ -15,8 +15,8 @@ const dictionary = (word) => {
         .then((response) => {
 
             console.log(response)
-            wordheading.innerHTML = response.word;
-            definition.innerHTML = response.definition;
+            wordheading.innerHTML ="Meaning of : " +response.word;
+            definition.innerHTML = response.definition.replace("2.","<br>2.").replace("3.","<br>3.").replace("4.","<br>4.");
         })
         .catch(err => console.error(err));
 }
