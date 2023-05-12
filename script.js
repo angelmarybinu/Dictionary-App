@@ -10,28 +10,19 @@ const dictionary = (word) => {
             'X-RapidAPI-Host': 'dictionary-by-api-ninjas.p.rapidapi.com'
         }
     };
-    
-    try {
-        const response = await fetch(url, options);
-        const result = await response.text();
-        
-        
-        
-        console.log(result);
-        
-        word.innerHTML=response.word;
-        definition.innerHTML=response.definition;
+    fetch('https://dictionary-by-api-ninjas.p.rapidapi.com/v1/dictionary?word=' + word, options)
+        .then(response => response.json())
+        .then((response) => {
 
-
-
-    } catch (error) {
-        console.error(error);
-    }
-    
+            console.log(response)
+            wordheading.innerHTML = response.word;
+            definition.innerHTML = response.definition;
+        })
+        .catch(err => console.error(err));
 }
 
-submitbtn.addEventListener("click",(e)=>
-{
+
+searchbtn.addEventListener("click", (e) => {
     e.preventDefault();
     dictionary(searchinput.value)
 })
